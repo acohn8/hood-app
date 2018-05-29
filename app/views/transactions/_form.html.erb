@@ -1,0 +1,7 @@
+<%= form_for transaction do |f| %>
+    <p>Item Name: <%= f.text_field :item_name %></p>
+    <p>Item Description: <%= f.text_field :item_description %></p>
+    <p>Item Condition: <%= f.text_field :condition %></p>
+    <p>Item Price: <%= f.number_field :price %></p>
+    <%= f.submit %>
+<% end %>

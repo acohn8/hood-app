@@ -11,6 +11,8 @@ class TransactionsController < ApplicationController
   end
 
   def create
+    byebug
+    session[:user_id]
   end
 
   def edit
@@ -26,4 +28,9 @@ class TransactionsController < ApplicationController
     def find_transaction
       @transaction = Transaction.find(params[:id])
     end
+
+    def transaction_params
+      #require params here
+    end
+
 end
