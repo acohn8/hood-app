@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
     def new
     end
-  
+
     def create
         # byebug
         @user = User.find_by(username: params[:user][:username])
@@ -10,11 +10,11 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         redirect_to controller: 'users', action: 'index'
     end
-  
-  
+
+
     def destroy
-      session.delete :name
-      redirect_to controller: 'application', action: 'home'
+      session.clear
+      redirect_to controller: 'sessions', action: 'new'
     end
 
 end
