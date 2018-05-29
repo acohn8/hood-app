@@ -1,0 +1,10 @@
+<h1> <%= @user.username %> </h1>
+<h2>Notices</h2>
+<% @user.notices.each do |notice| %>
+  <%= link_to notice.title, notice %><br/>
+<% end %>
+<h2>Marketplace Posts</h2>
+<% @user.transactions.each do |transaction| %>
+  <%= link_to transaction.item_name, transaction %> <br/>
+<% end %>
+<!-- comments? -->

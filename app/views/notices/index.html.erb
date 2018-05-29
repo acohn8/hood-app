@@ -1,0 +1,5 @@
+<%@notices.each do |notice|%>
+  <%= link_to notice.title, notice %> <br/>
+  <%= notice.content %> <br/>
+  <%= link_to notice.user.username, notice.user %> <br/>
+<% end %>

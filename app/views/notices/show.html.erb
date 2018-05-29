@@ -1,0 +1,9 @@
+<h1><%= @notice.title %></h1> <br/>
+<%= @notice.content %> <br/>
+<%= link_to @notice.user.username, @notice.user %> <br/>
+  ------------- <br/>
+<% @notice.comments.each do |comment|%>
+  <%= comment.content %> <br>
+  <%= link_to comment.user.username, comment.user %><br>
+  ------------- <br/>
+<% end %>

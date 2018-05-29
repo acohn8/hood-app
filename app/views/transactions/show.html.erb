@@ -1,0 +1,11 @@
+<h1><%= @transaction.item_name %></h1> <br/>
+Price: <%= number_to_currency(@transaction.price) %><br/>
+Condition: <%= @transaction.condition %><br/>
+<%= @transaction.item_description %> <br/>
+<%= link_to @transaction.user.username, @transaction.user %> <br/>
+  ------------- <br/>
+<% @transaction.comments.each do |comment|%>
+  <%= comment.content %> <br>
+  <%= link_to comment.user.username, comment.user %><br>
+  ------------- <br/>
+<% end %>
