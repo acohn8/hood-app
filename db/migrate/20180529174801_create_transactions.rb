@@ -6,7 +6,6 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
       t.string :item_description
       t.string :condition
       t.integer :user_id
-      t.integer :neighborhood_id
 
       t.timestamps
     end

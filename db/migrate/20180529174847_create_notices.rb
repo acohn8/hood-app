@@ -3,7 +3,6 @@ class CreateNotices < ActiveRecord::Migration[5.2]
     create_table :notices do |t|
       t.string :title
       t.text :content
-      t.integer :neighborhood_id
       t.integer :user_id
 
       t.timestamps
