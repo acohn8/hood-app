@@ -1,5 +1,5 @@
 <h1><%= @transaction.item_name %></h1> <br/>
-Price: <%= number_to_currency(@transaction.price) %><br/>
+Price: <%= @transaction.free? ? "FREE" : number_to_currency(@transaction.price) %><br/>
 Condition: <%= @transaction.condition %><br/>
 <%= @transaction.item_description %> <br/>
 <%= link_to @transaction.user.username, @transaction.user %> <br/>
@@ -8,4 +8,9 @@ Condition: <%= @transaction.condition %><br/>
   <%= comment.content %> <br>
   <%= link_to comment.user.username, comment.user %><br>
   ------------- <br/>
+<% end %>
+
+<% if @transaction.user.id == session[:user_id] %>
+  <%= link_to "Edit your transaction", edit_transaction_path(@transaction) %> |
+    <%= link_to 'Delete', @transaction,  method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

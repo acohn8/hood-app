@@ -1,0 +1,5 @@
+<% if @notice.user.id == session[:user_id] %>
+  <%= render 'form', notice: @notice %>
+  <% else %>
+  <%= "You cannot edit someone else's post."%>
+<% end %>

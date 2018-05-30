@@ -1,8 +1,8 @@
 class TransactionsController < ApplicationController
-  
-  before_action :find_transaction, only: [:edit, :show, :destroy]
-  
-  
+
+  before_action :find_transaction, only: [:edit, :update, :show, :destroy]
+
+
   def index
     @transactions = Transaction.all
   end
@@ -28,9 +28,16 @@ class TransactionsController < ApplicationController
   end
 
   def update
+    if @transaction.update(transaction_params)
+      redirect_to @transaction
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @transaction.destroy
+    redirect_to '/transactions'
   end
 
   private

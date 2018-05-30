@@ -1,1 +1,5 @@
-<%= render 'form', transaction: @transaction %>
+<% if @transaction.user.id == session[:user_id] %>
+  <%= render 'form', transaction: @transaction %>
+  <% else %>
+  <%= "You cannot edit someone else's post."%>
+<% end %>
