@@ -3,7 +3,7 @@ class NoticesController < ApplicationController
   before_action :unauth_redirect, only: [:edit, :show, :destroy]
 
   def index
-    @notices = Notice.all.select {|n| n.neighborhood == find_user.neighborhood}
+    @notices = Notice.all.select { |n| n.neighborhood == find_user.neighborhood}
   end
 
   def new
@@ -38,11 +38,11 @@ class NoticesController < ApplicationController
   def destroy
     @notice.destroy
     redirect_to '/notices'
-  
+
   end
 
   private
-    
+
     def find_user
       User.find_by(id: session[:user_id])
     end
