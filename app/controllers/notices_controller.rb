@@ -5,6 +5,7 @@ class NoticesController < ApplicationController
   end
 
   def new
+    @notice = Notice.new
   end
 
   def show
@@ -26,4 +27,9 @@ class NoticesController < ApplicationController
     def find_notice
       @notice = Notice.find(params[:id])
     end
+
+    def notice_params
+      params.require(:notice).permit(:title, :content)
+    end
+
 end

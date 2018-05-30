@@ -1,5 +1,5 @@
 <% @transactions.each do |transaction|%>
-  <%= link_to transaction.title, transaction %> <br/>
-  <%= transaction.content %> <br/>
+  <%= link_to transaction.item_name, transaction %> <br/>
+  <%= transaction.item_description %> <br/>
   <%= link_to transaction.user.username, transaction.user %> <br/>
 <% end %>

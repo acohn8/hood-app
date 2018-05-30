@@ -1,18 +1,27 @@
 class TransactionsController < ApplicationController
+  
   before_action :find_transaction, only: [:edit, :show, :destroy]
+  
+  
   def index
     @transactions = Transaction.all
   end
 
   def new
+    @transaction = Transaction.new
   end
 
   def show
   end
 
   def create
-    byebug
-    session[:user_id]
+    @transaction = Transaction.new(transaction_params)
+    @transaction.user = User.find_by(id: session[:user_id])
+    if @transaction.save
+      redirect_to @transaction
+    else
+      render :new
+    end
   end
 
   def edit
@@ -30,7 +39,7 @@ class TransactionsController < ApplicationController
     end
 
     def transaction_params
-      #require params here
+      params.require(:transaction).permit(:item_name, :item_description, :condition, :price)
     end
 
 end
