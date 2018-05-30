@@ -12,9 +12,9 @@
   <%= comment.content %> <br>
   <%= link_to comment.user.username, comment.user %><br>
   <% if comment.user.id == session[:user_id] %>
-  
-  <%= link_to "Edit", edit_comment_path(comment) %> |
-    <%= link_to 'Delete', comment,  method: :delete, data: { confirm: 'Are you sure?' } %><br>
+
+  <%= link_to "Edit", edit_notice_comment_path(@notice, comment) %> |
+    <%= link_to 'Delete', comment,  method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
   ------------- <br/>
 <% end %>

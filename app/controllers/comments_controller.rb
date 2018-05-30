@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
     end
 
     def create
-        byebug
         @comment = Comment.new(comment_params)
         @comment.user = User.find_by(id: session[:user_id])
         if @comment.save
@@ -18,10 +17,12 @@ class CommentsController < ApplicationController
     end
 
     def edit
+        params[:old_commentable_type] = @comment.commentable.class.name
+        params[:old_commentable_id] = @comment.commentable.id
     end
 
     def update
-        if @comment.update(comment_params)
+        if @comment.update(comment_edit_params)
             redirect_to @comment.commentable
         else
             render :edit
@@ -29,12 +30,13 @@ class CommentsController < ApplicationController
     end
 
     def destroy
+        parentpage = @comment.commentable
         @comment.destroy
-        #redirect
+        redirect_to parentpage
     end
 
     private
-    
+
         def find_comment
             @comment = Comment.find(params[:id])
         end
@@ -43,4 +45,7 @@ class CommentsController < ApplicationController
             params.require(:comment).permit(:content, :commentable_id, :commentable_type)
         end
 
+        def comment_edit_params
+            params.require(:comment).permit(:content)
+        end
 end
