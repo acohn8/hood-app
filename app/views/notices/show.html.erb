@@ -1,14 +1,22 @@
 <h1><%= @notice.title %></h1> <br/>
 <%= @notice.content %> <br/>
 <%= link_to @notice.user.username, @notice.user %> <br/>
-  ------------- <br/>
-<% @notice.comments.each do |comment|%>
-  <%= comment.content %> <br>
-  <%= link_to comment.user.username, comment.user %><br>
-  ------------- <br/>
-<% end %>
 
 <% if @notice.user.id == session[:user_id] %>
   <%= link_to "Edit", edit_notice_path(@notice) %> |
   <%= link_to 'Delete', @notice,  method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
+
+  ------------- <br/>
+<% @notice.comments.each do |comment|%>
+  <%= comment.content %> <br>
+  <%= link_to comment.user.username, comment.user %><br>
+  <% if comment.user.id == session[:user_id] %>
+  
+  <%= link_to "Edit", edit_comment_path(comment) %> |
+    <%= link_to 'Delete', comment,  method: :delete, data: { confirm: 'Are you sure?' } %><br>
+<% end %>
+  ------------- <br/>
+<% end %>
+
+<%= render 'comments/form', comment: @comment %>

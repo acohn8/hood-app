@@ -12,6 +12,7 @@ class TransactionsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def create

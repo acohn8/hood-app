@@ -10,6 +10,7 @@ class NoticesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def create
@@ -36,9 +37,11 @@ class NoticesController < ApplicationController
   def destroy
     @notice.destroy
     redirect_to '/notices'
+  
   end
 
   private
+    
     def find_notice
       @notice = Notice.find(params[:id])
     end
