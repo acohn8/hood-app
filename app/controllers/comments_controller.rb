@@ -17,8 +17,6 @@ class CommentsController < ApplicationController
     end
 
     def edit
-        params[:old_commentable_type] = @comment.commentable.class.name
-        params[:old_commentable_id] = @comment.commentable.id
     end
 
     def update

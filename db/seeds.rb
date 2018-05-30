@@ -1,8 +1,11 @@
 chevychase = Neighborhood.create(hood_name: 'Chevy Chase', anc: '3D')
+capitolhill = Neighborhood.create(hood_name: 'Capitol Hill', anc: '6B')
 
 bob = User.create(username: 'Bob', address: '3900 Morrison St NW, Washington, D.C. 20015', neighborhood: chevychase, password: "bobpass")
 
 dan = User.create(username: 'Dan', address: '3902 Morrison St NW, Washington, D.C. 20015', neighborhood: chevychase, password: "danpass")
+
+stacy = User.create(username: 'StacyLee', address: '1324 E St SE, Washington, D.C. 20003', neighborhood: capitolhill, password: "stacypass")
 
 bike_sale = Transaction.create(item_name: 'Road bike', price: 500, item_description: 'Carbon fiber bicycle', condition: 'Used one time!', user: bob)
 
