@@ -38,7 +38,6 @@ class NoticesController < ApplicationController
   def destroy
     @notice.destroy
     redirect_to '/notices'
-
   end
 
   private

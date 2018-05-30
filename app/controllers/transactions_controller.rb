@@ -1,10 +1,11 @@
 class TransactionsController < ApplicationController
 
   before_action :find_transaction, only: [:edit, :update, :show, :destroy]
+  before_action :unauth_redirect, only: [:edit, :show, :destroy]
 
 
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.all.select { |t| t.neighborhood == find_user.neighborhood }
   end
 
   def new
@@ -42,6 +43,10 @@ class TransactionsController < ApplicationController
   end
 
   private
+    def find_user
+      User.find_by(id: session[:user_id])
+    end
+
     def find_transaction
       @transaction = Transaction.find(params[:id])
     end
@@ -50,4 +55,9 @@ class TransactionsController < ApplicationController
       params.require(:transaction).permit(:item_name, :item_description, :condition, :price)
     end
 
+    def unauth_redirect
+      if @transaction.neighborhood != find_user.neighborhood
+        redirect_to transactions_path
+      end
+    end
 end
