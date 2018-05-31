@@ -1,3 +1,8 @@
+
+<%= form_tag new_notice_path, method: 'GET' do %>
+  <%= submit_tag 'New Notice' %>
+<% end %><br>
+
 <%@notices.each do |notice|%>
   <%= link_to notice.title, notice %> <br/>
   <%= notice.content %> <br/>

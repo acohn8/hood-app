@@ -1,3 +1,8 @@
+
+<%= form_tag new_transaction_path, method: 'GET' do %>
+  <%= submit_tag 'New Transaction' %>
+<% end %><br>
+
 <% @transactions.each do |transaction|%>
   <%= link_to transaction.item_name, transaction %> <br/>
   <%= transaction.item_description %> <br/>

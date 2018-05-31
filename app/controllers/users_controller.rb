@@ -11,9 +11,13 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
-        return redirect_to controller: 'users', action: 'new' unless @user.save
-        session[:user_id] = @user.id
-        redirect_to controller: 'users', action: 'index'
+        if @user.valid?
+            session[:user_id] = @user.id
+            redirect_to :root
+        else
+            flash[:error] = @user.errors.full_messages
+            redirect_to controller: 'users', action: 'new'
+        end
     end
 
     private

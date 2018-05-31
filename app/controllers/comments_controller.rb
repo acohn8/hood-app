@@ -8,11 +8,11 @@ class CommentsController < ApplicationController
 
     def create
         @comment = Comment.new(comment_params)
-        @comment.user = User.find_by(id: session[:user_id])
+        @comment.user = current_user
         if @comment.save
             redirect_to @comment.commentable
         else
-            render :new
+            redirect_to request.referrer
         end
     end
 

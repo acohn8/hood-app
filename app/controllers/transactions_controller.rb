@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
 
 
   def index
-    @transactions = Transaction.all.select { |t| t.neighborhood == find_user.neighborhood }
+    @transactions = Transaction.all.select { |t| t.neighborhood == current_user.neighborhood }
   end
 
   def new
@@ -18,7 +18,7 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(transaction_params)
-    @transaction.user = User.find_by(id: session[:user_id])
+    @transaction.user = current_user
     if @transaction.save
       redirect_to @transaction
     else
@@ -43,9 +43,6 @@ class TransactionsController < ApplicationController
   end
 
   private
-    def find_user
-      User.find_by(id: session[:user_id])
-    end
 
     def find_transaction
       @transaction = Transaction.find(params[:id])
@@ -56,7 +53,7 @@ class TransactionsController < ApplicationController
     end
 
     def unauth_redirect
-      if @transaction.neighborhood != find_user.neighborhood
+      if @transaction.neighborhood != current_user.neighborhood
         redirect_to transactions_path
       end
     end

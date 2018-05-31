@@ -11,7 +11,7 @@ class Transaction < ApplicationRecord
         true if price == 0
     end
 
-    def purchase
-        self.sold = true
-    end
+    # def purchase
+    #     self.sold = true
+    # end
 end

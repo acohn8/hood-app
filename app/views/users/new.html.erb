@@ -1,3 +1,12 @@
+<% if flash[:error] %>
+  <ul>
+    <% flash[:error].each do |error|%>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <%= form_for @user do |f| %>
   Username: <%= f.text_field :username %>
   Password <%= f.password_field :password %>
