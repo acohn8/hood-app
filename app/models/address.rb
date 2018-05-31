@@ -1,4 +1,5 @@
 class Address < ApplicationRecord
+  
   belongs_to :user
 
   def make_geocode_link

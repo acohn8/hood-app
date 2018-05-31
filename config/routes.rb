@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :addresses
   resources :comments
   resources :notices do
     resources :comments

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     end
 
     def create
+        byebug
         @user = User.create(user_params)
         if @user.valid?
             session[:user_id] = @user.id
@@ -23,7 +24,11 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :neighborhood_id, :email, :tag_line)
+        params.require(:user).permit(:username, :password, :neighborhood_id, :email, :tag_line, :line_1, :line_2, :zip)
+    end
+
+    def user_address_params
+        params.require(:user).permit(:line_1, :line_2, :zip)
     end
 
     def require_login
