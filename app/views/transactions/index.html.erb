@@ -1,4 +1,4 @@
-<h1>Transactions</h1>
+<h1>Marketplace</h1>
 
 <%= form_tag transactions_path, method: 'get'  do %>
   <%= text_field_tag :query %>
@@ -6,7 +6,7 @@
 <% end %>
 
 <%= form_tag new_transaction_path, method: 'GET' do %>
-  <%= submit_tag 'New Transaction' %>
+  <%= submit_tag 'New Sale' %>
 <% end %><br>
 
 <% @transactions.each do |transaction|%>
