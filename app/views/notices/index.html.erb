@@ -1,16 +1,19 @@
 <h1>Notices</h1>
+<%= link_to "Return Home", :root %><br><br>
+
+<%= form_tag new_notice_path, method: 'GET' do %>
+  <%= submit_tag 'New Notice' %>
+<% end %><br>
 
 <%= form_tag notices_path, method: 'get'  do %>
   <%= text_field_tag :query %>
   <%= submit_tag "Search", name: nil %>
 <% end %>
 
-<%= form_tag new_notice_path, method: 'GET' do %>
-  <%= submit_tag 'New Notice' %>
-<% end %><br>
+<h2>Active Notices</h2>
 
 <%@notices.each do |notice|%>
   <%= link_to notice.title, notice %> <br/>
   <%= notice.content %> <br/>
-  <%= link_to notice.user.username, notice.user %> <br/>
+  Posted by: <%= link_to notice.user.username, notice.user %> <br/><br/>
 <% end %>

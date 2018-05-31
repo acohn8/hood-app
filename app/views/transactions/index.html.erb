@@ -1,16 +1,19 @@
-<h1>Transactions</h1>
+<h1>Marketplace</h1>
+<%= link_to "Return Home", :root %><br><br>
+
+<%= form_tag new_transaction_path, method: 'GET' do %>
+  <%= submit_tag 'New Sale' %>
+<% end %><br>
 
 <%= form_tag transactions_path, method: 'get'  do %>
   <%= text_field_tag :query %>
   <%= submit_tag "Search", name: nil %>
 <% end %>
 
-<%= form_tag new_transaction_path, method: 'GET' do %>
-  <%= submit_tag 'New Transaction' %>
-<% end %><br>
+<h2>Active Sales</h2>
 
 <% @transactions.each do |transaction|%>
   <%= link_to transaction.item_name, transaction %> <br/>
   <%= transaction.item_description %> <br/>
-  <%= link_to transaction.user.username, transaction.user %> <br/>
+  Posted by: <%= link_to transaction.user.username, transaction.user %> <br/><br/>
 <% end %>

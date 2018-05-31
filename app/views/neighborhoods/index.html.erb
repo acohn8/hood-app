@@ -1,25 +1,44 @@
-<div id="notices">
-  <h1> <%= "Hello #{@user.username}, welcome to #{@user.neighborhood.hood_name}"%> </h1>
-  <h2><%= link_to "Notices:", notices_path %></h2>
-  <% @notices.each do |notice| %>
-    <h3> <%= link_to notice.title, notice %> <br/> </h3>
-    <%= notice.content.truncate(300) %> <br/>
-  <% end %>
-</div>
+<h1><%= "#{@user.neighborhood.hood_name}"%></h1>
+<h2> <%= "Hello #{@user.username.capitalize}, Welcome to Your Neighborhood" %></h2>
+
+<%= link_to "Log Out", "/logout", method: "DELETE" %>
+
+<br><br>
+
 <div id="transactions">
-  <h2><%= link_to "Marketplace:", transactions_path%></h2>
-    <% @transactions.each do |transaction| %>
-    <h3> <%= transaction.condition.upcase %>:
-    <%= link_to transaction.item_name, transaction %>
-    (<%=transaction.price %>) </h3>
-    <%= transaction.item_description.truncate(300) %> <br/>
-  <% end %>
+  <h2>Marketplace</h2>
+  <p><%= link_to "View Marketplace", transactions_path%></p>
+    <ul>
+      <% @transactions.each do |transaction| %>
+        <li><%= link_to transaction.item_name.titlecase, transaction %></li>
+        <ul>
+          <li><%= transaction.condition.capitalize %></li>
+          <li><%= number_to_currency(transaction.price) %></li>
+          <li><%= transaction.item_description.capitalize.truncate(300) %></li>
+          <li>Replies: <%= transaction.comments.count %></li>
+        </ul>
+      <% end %>
+    </ul>
 </div>
+
+<div id="notices">
+  <h2>Notices</h2>
+  <p><%= link_to "View all notices", notices_path %></p>
+  <ul>
+    <% @notices.each do |notice| %>
+      <li> <%= link_to notice.title, notice %> <br/> </li>
+      <%= notice.content.truncate(300) %> <br/>
+    <% end %>
+  </ul>
+</div>
+
 <div id="neighbors">
-  <h2>Neighbors:</h2>
+  <h2>Neighbors</h2>
   <ul>
   <% @neighbors.each do |neighbor|%>
-  <li> <%= neighbor.username %> </li>
+    <% if current_user != neighbor %>
+      <li> <%= link_to neighbor.username, neighbor %> </li>
+    <% end %>
   <% end %>
   </ul>
 </div>

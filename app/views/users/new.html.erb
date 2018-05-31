@@ -1,3 +1,5 @@
+<h1>Register as New User</h1>
+
 <% if flash[:error] %>
   <ul>
     <% flash[:error].each do |error|%>
@@ -8,9 +10,11 @@
 
 
 <%= form_for @user do |f| %>
-  Username: <%= f.text_field :username %>
-  Password <%= f.password_field :password %>
-  Neighborhood: <%= f.collection_select :neighborhood_id, Neighborhood.all, :id, :hood_name, {prompt: true} %>
-  <%= f.submit "Submit" %>
+  <p>Username: <%= f.text_field :username %></p>
+  <p>Email Address: <%= f.text_field :email %></p>
+  <p>Password: <%= f.password_field :password %></p>
+  <p>Tag Line: <%= f.text_field :tag_line %></p>
+  <p>Neighborhood: <%= f.collection_select :neighborhood_id, Neighborhood.all, :id, :hood_name, {prompt: true} %></p>
+  <p><%= f.submit "Submit" %></p>  
 <% end %>
 
