@@ -1,3 +1,9 @@
+<h1>Notices</h1>
+
+<%= form_tag notices_path, method: 'get'  do %>
+  <%= text_field_tag :query %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
 
 <%= form_tag new_notice_path, method: 'GET' do %>
   <%= submit_tag 'New Notice' %>

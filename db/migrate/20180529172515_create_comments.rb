@@ -3,8 +3,8 @@ class CreateComments < ActiveRecord::Migration[5.2]
     create_table :comments do |t|
       t.text :content
       t.integer :user_id
-      t.integer :likes
-      t.integer :dislikes
+      t.integer :likes, default: 0
+      t.integer :dislikes, default: 0
       t.integer :commentable_id
       t.string :commentable_type
 

@@ -15,12 +15,13 @@ ActiveRecord::Schema.define(version: 2018_05_30_213120) do
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.integer "user_id"
-    t.integer "likes"
-    t.integer "dislikes"
+    t.integer "likes", default: 0
+    t.integer "dislikes", default: 0
     t.integer "commentable_id"
     t.string "commentable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
   end
 
   create_table "neighborhoods", force: :cascade do |t|
@@ -52,6 +53,8 @@ ActiveRecord::Schema.define(version: 2018_05_30_213120) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "address"
+    t.string "email"
+    t.string "tag_line"
     t.integer "neighborhood_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

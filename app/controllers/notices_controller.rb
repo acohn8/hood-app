@@ -3,7 +3,11 @@ class NoticesController < ApplicationController
   before_action :unauth_redirect, only: [:edit, :show, :destroy]
 
   def index
-    @notices = Notice.all.select { |n| n.neighborhood == current_user.neighborhood}
+    if params[:query]
+      @notices = Notice.search(params[:query]).select { |n| n.neighborhood == current_user.neighborhood}
+    else
+      @notices = Notice.all.select { |n| n.neighborhood == current_user.neighborhood}
+    end
   end
 
   def new

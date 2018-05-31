@@ -11,7 +11,11 @@ class Transaction < ApplicationRecord
         true if price == 0
     end
 
-    # def purchase
-    #     self.sold = true
-    # end
+    def self.search(query)
+        if query.empty? || query.nil?
+            Trasaction.all
+        else
+            Transaction.all.where("item_name LIKE ? or item_description LIKE ?", "%#{query}%", "%#{query}%")
+        end
+    end
 end

@@ -5,7 +5,11 @@ class TransactionsController < ApplicationController
 
 
   def index
-    @transactions = Transaction.all.select { |t| t.neighborhood == current_user.neighborhood }
+    if params[:query]
+      @transactions = Transaction.search(params[:query]).select { |t| t.neighborhood == current_user.neighborhood}
+    else
+      @transactions = Transaction.all.select { |t| t.neighborhood == current_user.neighborhood }
+    end
   end
 
   def new
