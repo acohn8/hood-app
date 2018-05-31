@@ -5,6 +5,7 @@ class User < ApplicationRecord
     has_many :transactions
     has_many :notices
     has_many :comments
+    has_one :address
     belongs_to :neighborhood
 
     validates :username,:password, presence: true
