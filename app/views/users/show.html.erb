@@ -1,7 +1,11 @@
-<h1><%= @user.username %> </h1>
+<h1>Neighbor: <%= @user.username %> </h1>
+
+<%= link_to "Return Home", :root %><br>
+
 <p>Tag Line: <%= @user.tag_line %></p>
 <p>Neighborhood: <%= @user.neighborhood.hood_name %></p>
 <p>Email Address: <%= @user.email %></p>
+
 
 
 <h2>Notices</h2>
@@ -17,6 +21,12 @@
 <h2>Comments</h2>
 <ul>
   <% @user.comments.each do |comment| %>
-    
+    <% if comment.commentable_type == "Notice"%>
+    <li><%= comment.content %></li>
+    <ul><li><%= link_to comment.commentable.title, notice_path(comment.commentable) %> (Notices)</li></ul>
+    <% else %>
+    <li><%= comment.content %></li>
+    <ul><li><%= link_to comment.commentable.item_name, transaction_path(comment.commentable) %>(Marketplace)</li></ul>
+    <% end %>
   <% end %>
 </ul>

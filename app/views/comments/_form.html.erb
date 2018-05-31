@@ -1,6 +1,8 @@
+_____________________________<br><br>
 <%= form_for comment do |f| %>
     <%= f.hidden_field :commentable_id, value: params["id"] %>
     <%= f.hidden_field :commentable_type, value: params["controller"].singularize.capitalize %>
-    <p>Comment: <%= f.text_area :content %></p>
+    Comment: <br>
+    <%= f.text_area :content %><br>
     <%= f.submit %>
-<% end %>
+<% end %><br>

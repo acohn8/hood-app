@@ -1,24 +1,26 @@
-<h1><%= @transaction.item_name %></h1> <br/>
+<h1><%= @transaction.item_name %></h1>
+<%= link_to "Back to Marketplace", transactions_path %><br><br>
+
 Price: <%= @transaction.free? ? "FREE" : number_to_currency(@transaction.price) %><br/>
 Condition: <%= @transaction.condition %><br/>
 <%= @transaction.item_description %> <br/>
 <%= link_to @transaction.user.username, @transaction.user %> <br/>
-  ------------- <br/>
 
 <% if @transaction.user.id == session[:user_id] %>
   <%= link_to "Edit", edit_transaction_path(@transaction) %> |
     <%= link_to 'Delete', @transaction,  method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+<% end %><br>
+
 
 <% @transaction.comments.each do |comment|%>
-  <%= comment.content %> <br>
-  <%= link_to comment.user.username, comment.user %><br>
+  _____________________________<br><br>
+  Comment by: <%= link_to comment.user.username, comment.user %><br>
+  <p><%= comment.content %></p>
   <% if comment.user.id == session[:user_id] %>
 
   <%= link_to "Edit", edit_transaction_comment_path(@transaction, comment) %> |
     <%= link_to 'Delete', comment,  method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
-  ------------- <br/>
-<% end %>
+<% end %><br>
 
-<%= render 'comments/form', comment: @comment %>
+<%= render 'comments/form', comment: @comment %><br>
