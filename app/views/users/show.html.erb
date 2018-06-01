@@ -6,8 +6,6 @@
 <p>Neighborhood: <%= @user.neighborhood.hood_name %></p>
 <p>Email Address: <%= @user.email %></p>
 
-
-
 <h2>Notices</h2>
 <% @user.notices.each do |notice| %>
   <%= link_to notice.title, notice %><br/>

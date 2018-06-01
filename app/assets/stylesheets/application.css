@@ -1,3 +1,21 @@
+body {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+nav {
+  margin: 0px;
+}
+
+.container {
+  margin: 20px;
+}
+
+.card {
+  margin: 20px;
+  min-width: 250px;
+  min-height: 200px;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

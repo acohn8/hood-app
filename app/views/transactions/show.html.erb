@@ -12,15 +12,18 @@ Condition: <%= @transaction.condition %><br/>
 <% end %><br>
 
 
+<h4>Comments</h4>
 <% @transaction.comments.each do |comment|%>
-  _____________________________<br><br>
-  Comment by: <%= link_to comment.user.username, comment.user %><br>
-  <p><%= comment.content %></p>
-  <% if comment.user.id == session[:user_id] %>
-
-  <%= link_to "Edit", edit_transaction_comment_path(@transaction, comment) %> |
-    <%= link_to 'Delete', comment,  method: :delete, data: { confirm: 'Are you sure?' } %>
+<div class="card bg-light mb-3" style="max-width: 20rem;">
+  <div class="card-header"><%= link_to comment.user.username, comment.user %></div>
+  <div class="card-body">
+    <p class="card-text"> <%= comment.content %></p>
+    <% if comment.user.id == session[:user_id] %>
+      <small><%= link_to "Edit", edit_notice_comment_path(@notice, comment) %> |
+      <%= link_to 'Delete', comment,  method: :delete, data: { confirm: 'Are you sure?' } %></small>
+    <% end %>
+  </div>
+</div>
 <% end %>
-<% end %><br>
 
 <%= render 'comments/form', comment: @comment %><br>

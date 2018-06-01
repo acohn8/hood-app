@@ -1,19 +1,28 @@
 <h1>Notices</h1>
-<%= link_to "Return Home", :root %><br><br>
 
-<%= form_tag new_notice_path, method: 'GET' do %>
-  <%= submit_tag 'New Notice' %>
-<% end %><br>
+<div>
+  <%= form_tag new_notice_path, method: 'GET' do %>
+    <%= submit_tag 'New Notice', class: "btn btn-primary btn-lg" %>
+  <% end %>
+</div>
 
+<div class="form-group">
 <%= form_tag notices_path, method: 'get'  do %>
-  <%= text_field_tag :query %>
-  <%= submit_tag "Search", name: nil %>
+  <%=text_field :query, class: "form-control form-control-lg", placeholder: "Search", id: "inputLarge" %>
+  <%= submit_tag 'Search', class: "btn btn-primary" %>
 <% end %>
+</div>
 
-<h2>Active Notices</h2>
-
-<%@notices.each do |notice|%>
-  <%= link_to notice.title, notice %> <br/>
-  <%= notice.content %> <br/>
-  Posted by: <%= link_to notice.user.username, notice.user %> <br/><br/>
-<% end %>
+<div class="container">
+    <div class="row">
+      <% @notices.each do |notice|%>
+        <div class="card border-primary" style="max-width: 20rem">
+          <div class="card-header"><%= link_to notice.user.username, notice.user %></div>
+          <div class="card-body">
+            <h4 class="card-title"><%= link_to notice.title, notice %></h4>
+            <p class="card-text"><%= notice.content.truncate(200) %></p>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

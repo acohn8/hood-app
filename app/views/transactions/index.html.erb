@@ -1,4 +1,5 @@
 <h1>Marketplace</h1>
+
 <div>
   <%= form_tag new_transaction_path, method: 'GET' do %>
     <%= submit_tag 'New Sale', class: "btn btn-primary btn-lg" %>
@@ -7,13 +8,22 @@
 
 <div class="form-group">
 <%= form_tag transactions_path, method: 'get'  do %>
-  <%=text_field :query, class: "form-control form-control-lg", placeholder: ".form-control-lg", id: "inputLarge" %>
+  <%=text_field :query, class: "form-control form-control-lg", placeholder: "Search", id: "inputLarge" %>
   <%= submit_tag 'Search', class: "btn btn-primary" %>
 <% end %>
 </div>
 
-<% @transactions.each do |transaction|%>
-  <h4><%= link_to transaction.item_name, transaction %> </h4>
-  <p><%= transaction.item_description %></p>
-  <small>Posted by: <%= link_to transaction.user.username, transaction.user %></small>
-<% end %>
+<div class="container">
+    <div class="row">
+      <% @transactions.each do |transaction|%>
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+          <div class="card-header"><%= link_to transaction.user.username, transaction.user %></div>
+          <div class="card-body">
+            <h4 class="card-title"><%= link_to transaction.item_name, transaction %></h4>
+            <p class="card-text"><%= number_to_currency(transaction.price) %></p>
+            <p class="card-text"><%= transaction.item_description.truncate(200) %></p>
+          </div>
+        </div>
+      <% end %>
+      </div>
+</div>

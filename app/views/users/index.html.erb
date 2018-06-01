@@ -1,15 +1,19 @@
-<ul>
-    <% @users.each do |user| %>
-        <li><%= user.username %><li>
-        <ul>
-            <li>Tag Line: <%= user.tag_line %></li>
-            <% if user.notices.any? %>
-                <li>Recent Notice: <%= link_to user.recent_notice.title, user.recent_notice %></li>
-            <% end %>
+<h1>Neighbors</h1>
+<div class="container">
+    <div class="row">
+        <% @users.each do |user|%>
+          <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <div class="card-body">
+              <h4 class="card-title"><%= link_to user.username, user %></h4>
+              <p class="card-text"><em><%= user.tag_line %></em></p>
+              <% if user.notices.any? %>
+                <p class="card-text"><strong>Recent Notice:</strong> <%= link_to user.recent_notice.title, user.recent_notice %></p>
+              <% end %>
             <% if user.transactions.any? %>
-                <li>Recent Marketplace: <%= link_to user.recent_transaction.item_name, user.recent_transaction %></li>
-            <% end %>
-        </ul>
-    <% end %>
-</ul>
-
+                <p class="card-text"><strong>Recent Marketplace:</strong> <%= link_to user.recent_transaction.item_name, user.recent_transaction %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+    </div>
+</div>

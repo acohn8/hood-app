@@ -8,34 +8,44 @@
   </p>
 </div>
 
-<div class="card border-info mb-3" style="max-width: 20rem;">
-  <div class="card-header"><%= link_to "Marketplace", transactions_path %></div>
-  <% @transactions.each do |transaction| %>
-  <div class="card-body">
-    <h4 class="card-title"><%= link_to transaction.item_name.titlecase, transaction %></h4>
-    <p class="card-text"><%= transaction.condition.capitalize %></p>
-    <p class="card-text"><%= number_to_currency(transaction.price) %></p>
-    <p class="card-text"><%= transaction.item_description.truncate(200) %></p>
-  </div>
-  <% end %>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card border-info mb-3" style="max-width: 20rem;">
+        <div class="card-header"><%= link_to "Marketplace", transactions_path %></div>
+        <% @transactions.each do |transaction| %>
+        <div class="card-body">
+          <h4 class="card-title"><%= link_to transaction.item_name.titlecase, transaction %></h4>
+          <p class="card-text"><%= transaction.condition.capitalize %></p>
+          <p class="card-text"><%= number_to_currency(transaction.price) %></p>
+          <p class="card-text"><%= transaction.item_description.truncate(200) %></p>
+        </div>
+        <% end %>
+      </div>
+    </div>
 
-<div class="card border-info mb-3" style="max-width: 20rem;">
-  <div class="card-header"><%= link_to "Notices", notices_path %></div>
-  <% @notices.each do |notice| %>
-  <div class="card-body">
-    <h4 class="card-title"><%= link_to notice.title, notice %></h4>
-    <p class="card-text"><%= notice.content.truncate(200) %></p>
-  </div>
-  <% end %>
-</div>
+    <div class="col-sm">
+      <div class="card border-info mb-3" style="max-width: 20rem;">
+        <div class="card-header"><%= link_to "Notices", notices_path %></div>
+        <% @notices.each do |notice| %>
+        <div class="card-body">
+          <h4 class="card-title"><%= link_to notice.title, notice %></h4>
+          <p class="card-text"><%= notice.content.truncate(200) %></p>
+        </div>
+        <% end %>
+      </div>
+    </div>
 
-<div class="card border-info mb-3" style="max-width: 20rem;">
-  <div class="card-header"><%= link_to "Neighbors", users_path %></div>
-  <% @neighbors.each do |neighbor| %>
-  <div class="card-body">
-    <h4 class="card-title"><%= link_to neighbor.username, neighbor %></h4>
-    <p class="card-text"><%= neighbor.tag_line %></p>
+    <div class="col-sm">
+      <div class="card border-info mb-3" style="max-width: 20rem;">
+        <div class="card-header"><%= link_to "Neighbors", users_path %></div>
+        <% @neighbors.each do |neighbor| %>
+        <div class="card-body">
+          <h4 class="card-title"><%= link_to neighbor.username, neighbor %></h4>
+          <p class="card-text"><%= neighbor.tag_line %></p>
+        </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <% end %>
 </div>

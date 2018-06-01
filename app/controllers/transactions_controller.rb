@@ -6,7 +6,7 @@ class TransactionsController < ApplicationController
 
   def index
     if params[:query]
-      @transactions = Transaction.search(params[:query]).select { |t| t.neighborhood == current_user.neighborhood}
+      @transactions = Transaction.search(params[:query].first).select { |t| t.neighborhood == current_user.neighborhood}
     else
       @transactions = Transaction.all.select { |t| t.neighborhood == current_user.neighborhood }
     end

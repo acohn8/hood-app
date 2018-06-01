@@ -8,18 +8,18 @@
 <% end %>
 
 <%= form_for notice do |f| %>
-<form>
-  <fieldset>
-    <div class="form-group">
-      <label>Title</label>
-      <%= f.text_field :title, class: "form-control", id: "inputDefault", placeholder: "Title" %>
-    </div>
+    <form>
+      <fieldset>
         <div class="form-group">
-      <label>Content</label>
-      <%= f.text_area :content, class: "form-control", id: "inputDefault", placeholder: "Content" %>
-    </div>
-    <%= f.submit class: "btn btn-primary" %>
-  </fieldset>
-</form>
+          <label>Title</label>
+          <%= f.text_field :title, class: "form-control", id: "inputDefault", placeholder: "Title" %>
+        </div>
+            <div class="form-group">
+          <label>Content</label>
+          <%= f.text_area :content, class: "form-control", id: "inputDefault", placeholder: "Content" %>
+        </div>
+        <%= f.submit class: "btn btn-primary" %>
+      </fieldset>
+    </form>
 <% end %>
 
