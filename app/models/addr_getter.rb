@@ -1,6 +1,6 @@
 class AddrGetter
 
-    @@api_key = "pk.eyJ1IjoiYWRhbWNvaG4iLCJhIjoiY2podjNqNHYwMHV6czNxcndrYnJsa2xxbCJ9.C40wuf_4M8IH8QaxGIHX_A"
+    @@api_key = ""
 
     def self.get(add_hash)
         lat_long = self.get_lat_long(add_hash)
