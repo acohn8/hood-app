@@ -1,6 +1,6 @@
 class AddrGetter
 
-    @@api_key = ""
+    @@api_key = "pk.eyJ1IjoiYWRhbWNvaG4iLCJhIjoiY2podjNqNHYwMHV6czNxcndrYnJsa2xxbCJ9.C40wuf_4M8IH8QaxGIHX_A"
 
     def self.get(add_hash)
         lat_long = self.get_lat_long(add_hash)
@@ -17,13 +17,4 @@ class AddrGetter
         response = HTTParty.get("https://api.mapbox.com/v4/adamcohn.3x04k755/tilequery/#{lat_long_array.join(',')}.json?radius=10&access_token=#{@@api_key}").parsed_response
         response['features'].first['properties']['NBH_NAMES']
     end
-
-    # def self.geocode_address
-    #     make_geocode_link['features'].first['center']
-    # end
-
-    # def self.make_neighborhood_link
-    #     HTTParty.get("https://api.mapbox.com/v4/adamcohn.3x04k755/tilequery/#{geocode_address.join(',')}.json?radius=10&access_token=#{@@api_key}").parsed_response
-    # end
-
 end

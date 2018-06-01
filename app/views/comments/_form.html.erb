@@ -1,8 +1,13 @@
-_____________________________<br><br>
 <%= form_for comment do |f| %>
+    <form>
     <%= f.hidden_field :commentable_id, value: params["id"] %>
     <%= f.hidden_field :commentable_type, value: params["controller"].singularize.capitalize %>
-    Comment: <br>
-    <%= f.text_area :content %><br>
-    <%= f.submit %>
-<% end %><br>
+      <fieldset>
+        <div class="form-group">
+          <label>Comment</label>
+          <%= f.text_area :content, class: "form-control", id: "inputDefault", placeholder: "Content" %>
+        </div>
+        <%= f.submit class: "btn btn-primary" %>
+      </fieldset>
+    </form>
+<% end %>

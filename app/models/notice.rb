@@ -14,4 +14,9 @@ class Notice < ApplicationRecord
             self.where("title LIKE ? or content LIKE ?", "%#{query}%", "%#{query}%")
         end
     end
+
+    def comment_count
+        self.comments.count
+    end
+
 end

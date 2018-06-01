@@ -1,13 +1,25 @@
 <% if @notice.errors.any? %>
-    <ul>
-        <% @notice.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-        <% end %>
-    </ul>
+    <% @notice.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Oh snap!</strong> <%= message %>
+</div>
+    <% end %>
 <% end %>
 
 <%= form_for notice do |f| %>
-    <p>Title: <%= f.text_field :title %></p>
-    <p>Content:: <%= f.text_area :content %></p>
-    <%= f.submit %>
+<form>
+  <fieldset>
+    <div class="form-group">
+      <label>Title</label>
+      <%= f.text_field :title, class: "form-control", id: "inputDefault", placeholder: "Title" %>
+    </div>
+        <div class="form-group">
+      <label>Content</label>
+      <%= f.text_area :content, class: "form-control", id: "inputDefault", placeholder: "Content" %>
+    </div>
+    <%= f.submit class: "btn btn-primary" %>
+  </fieldset>
+</form>
 <% end %>
+

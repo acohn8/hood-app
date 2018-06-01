@@ -1,10 +1,19 @@
 <%= flash[:message] %>
 
 <%= form_for :user, url: '/login' do |f| %>
-  Username: <%= f.text_field :username %>
-  Password <%= f.password_field :password %>
-  <%= f.submit "Submit" %>
+    <form>
+      <fieldset>
+        <div class="form-group">
+          <label>Username</label>
+          <%= f.text_field :username, class: "form-control", id: "inputDefault", placeholder: "Username" %>
+        </div>
+            <div class="form-group">
+          <label>Password</label>
+          <%= f.password_field :password, class: "form-control", id: "inputDefault", placeholder: "Password" %>
+        </div>
+        <%= f.submit  "Log In", class: "btn btn-primary" %>
+      </fieldset>
+    </form>
 <% end %>
-<br><br>
 
 <%= link_to "Register", new_user_path %>

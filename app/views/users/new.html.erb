@@ -1,23 +1,56 @@
 <h1>Register as New User</h1>
 
 <% if flash[:error] %>
-  <ul>
     <% flash[:error].each do |error|%>
-      <li><%= error %></li>
+<div class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Oh snap!</strong> <%= error %>
+</div>
     <% end %>
-  </ul>
 <% end %>
-
 
 <%= form_for @user do |f| %>
-  <p>Username: <%= f.text_field :username %></p>
-  <p>Email Address: <%= f.text_field :email %></p>
-  <p>Password: <%= f.password_field :password %></p>
-  <p>Tag Line: <%= f.text_field :tag_line %></p>
-  <p>ADDRESS</p>
-  <p>Line 1: <%= f.text_field :line_1 %></p>
-  <p>Line 2: <%= f.text_field :line_2 %></p>
-  <p>ZIP: <%= f.text_field :zip %></p>
-  <p><%= f.submit "Submit" %></p>  
-<% end %>
+<form>
+  <fieldset>
+    <div class="form-group">
+      <label>Username</label>
+      <%= f.text_field :username, class: "form-control", id: "inputDefault", placeholder: "Enter username" %>
+    </div>
+
+    <div class="form-group">
+      <label>Email address</label>
+      <%= f.text_field :email, class: "form-control", id: "exampleInputEmail1", placeholder: "Enter email" %>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <%= f.password_field :password, class: "form-control", id: "exampleInputPassword1", placeholder: "Password" %>
+  </div>
+
+    <div class="form-group">
+      <label>Tag Line</label>
+      <%= f.text_field :tag_line, class:"form-control", id:"inputDefault", placeholder:"Tag Line" %>
+      <small id="tagHelp" class="form-text text-muted">Tell your neighbors a little about yourself.</small>
+  </div>
+
+  <div class="form-group">
+      <label>Address (Line 1)</label>
+      <%= f.text_field :line_1, class: "form-control", id: "inputDefault", placeholder: "Address" %>
+      <small id="addressHelp" class="form-text text-muted">Be sure to include your quadrant (NW, NE, SE, SW). </small>
+  </div>
+
+  <div class="form-group">
+      <label>Address (Line 2)</label>
+      <%= f.text_field :line_2, class: "form-control", id: "inputDefault", placeholder: "Apartment/Suite Number" %>
+      <small id="emailHelp" class="form-text text-muted">If necessary, include apartment number here. </small>
+  </div>
+
+    <div class="form-group">
+      <label>Zip Code</label>
+      <%= f.text_field :zip, class: "form-control", id: "inputDefault", placeholder: "Zip Code" %>
+  </div>
+  <%= f.submit class: "btn btn-primary" %>
+  <fieldset>
+</form>
+<%end %>
 

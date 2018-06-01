@@ -1,44 +1,41 @@
-<h1><%= "#{@user.neighborhood.hood_name}"%></h1>
-<h2> <%= "Hello #{@user.username.capitalize}, Welcome to Your Neighborhood" %></h2>
-
-<%= link_to "Log Out", "/logout", method: "DELETE" %>
-
-<br><br>
-
-<div id="transactions">
-  <h2>Marketplace</h2>
-  <p><%= link_to "View Marketplace", transactions_path%></p>
-    <ul>
-      <% @transactions.each do |transaction| %>
-        <li><%= link_to transaction.item_name.titlecase, transaction %></li>
-        <ul>
-          <li><%= transaction.condition.capitalize %></li>
-          <li><%= number_to_currency(transaction.price) %></li>
-          <li><%= transaction.item_description.capitalize.truncate(300) %></li>
-          <li>Replies: <%= transaction.comments.count %></li>
-        </ul>
-      <% end %>
-    </ul>
+<div class="jumbotron">
+  <h1 class="display-3"><%= "#{@user.neighborhood.hood_name}"%></h1>
+  <p class="lead"><%= "Hello #{@user.username.capitalize}, Welcome to Your Neighborhood" %></p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </p>
 </div>
 
-<div id="notices">
-  <h2>Notices</h2>
-  <p><%= link_to "View all notices", notices_path %></p>
-  <ul>
-    <% @notices.each do |notice| %>
-      <li> <%= link_to notice.title, notice %> <br/> </li>
-      <%= notice.content.truncate(300) %> <br/>
-    <% end %>
-  </ul>
-</div>
-
-<div id="neighbors">
-  <h2>Neighbors</h2>
-  <ul>
-  <% @neighbors.each do |neighbor|%>
-    <% if current_user != neighbor %>
-      <li> <%= link_to neighbor.username, neighbor %> </li>
-    <% end %>
+<div class="card border-info mb-3" style="max-width: 20rem;">
+  <div class="card-header"><%= link_to "Marketplace", transactions_path %></div>
+  <% @transactions.each do |transaction| %>
+  <div class="card-body">
+    <h4 class="card-title"><%= link_to transaction.item_name.titlecase, transaction %></h4>
+    <p class="card-text"><%= transaction.condition.capitalize %></p>
+    <p class="card-text"><%= number_to_currency(transaction.price) %></p>
+    <p class="card-text"><%= transaction.item_description.truncate(200) %></p>
+  </div>
   <% end %>
-  </ul>
+</div>
+
+<div class="card border-info mb-3" style="max-width: 20rem;">
+  <div class="card-header"><%= link_to "Notices", notices_path %></div>
+  <% @notices.each do |notice| %>
+  <div class="card-body">
+    <h4 class="card-title"><%= link_to notice.title, notice %></h4>
+    <p class="card-text"><%= notice.content.truncate(200) %></p>
+  </div>
+  <% end %>
+</div>
+
+<div class="card border-info mb-3" style="max-width: 20rem;">
+  <div class="card-header"><%= link_to "Neighbors", users_path %></div>
+  <% @neighbors.each do |neighbor| %>
+  <div class="card-body">
+    <h4 class="card-title"><%= link_to neighbor.username, neighbor %></h4>
+    <p class="card-text"><%= neighbor.tag_line %></p>
+  </div>
+  <% end %>
 </div>

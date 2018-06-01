@@ -1,3 +1,15 @@
-user logged in <br/>
+<ul>
+    <% @users.each do |user| %>
+        <li><%= user.username %><li>
+        <ul>
+            <li>Tag Line: <%= user.tag_line %></li>
+            <% if user.notices.any? %>
+                <li>Recent Notice: <%= link_to user.recent_notice.title, user.recent_notice %></li>
+            <% end %>
+            <% if user.transactions.any? %>
+                <li>Recent Marketplace: <%= link_to user.recent_transaction.item_name, user.recent_transaction %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</ul>
 
-<%= link_to "Logout", "/logout", method: "DELETE" %>

@@ -1,0 +1,30 @@
+<h2>All Neighborhoods</h2>
+
+Active Neighborhoods: <%= Neighborhood.active_count%><br><br>
+
+Inactive Neighborhoods: <%= Neighborhood.inactive_count %><br><br>
+
+Total Users: <%= User.all.count %><br><br>
+
+Total Notices: <%= Notice.all.count %><br><br>
+
+Total Sales: <%= Transaction.all.count %><br><br>
+
+Total Comments: <%= Comment.all.count %><br><br>
+
+
+<h3>Most Commented Notices</h3>
+<ul>
+<% Notice.all.sort_by {|n| n.comment_count}.to_a.reverse.each do |notice| %>
+    <li><%= link_to notice.title, notice %> | <%= notice.comment_count %></li>
+<% end %>
+</ul>
+
+<br><br>
+
+<h3>Most Expensive Transactions</h3>
+<ul>
+<% Transaction.most_expensive.each do |transaction| %>
+    <li><%= link_to transaction.item_name, transaction %> | <%= transaction.price %></li>
+<% end %>
+</ul>

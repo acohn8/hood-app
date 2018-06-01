@@ -2,6 +2,10 @@ class UsersController < ApplicationController
     before_action :require_login, only: [:index]
     before_action :find_user, only: [:show]
 
+    def index
+        @users = current_user.neighborhood.users
+    end
+
     def new
         @user = User.new
     end
@@ -10,9 +14,12 @@ class UsersController < ApplicationController
     end
 
     def create
-        byebug
-        @user = User.create(user_params)
+        found_hood = AddrGetter.get(user_params)
+        neighborhood = Neighborhood.find_or_create_by(hood_name: found_hood)
+        @user = User.new(user_params)
+        @user.neighborhood = neighborhood
         if @user.valid?
+            @user.save
             session[:user_id] = @user.id
             redirect_to :root
         else

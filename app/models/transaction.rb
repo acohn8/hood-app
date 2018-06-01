@@ -18,4 +18,9 @@ class Transaction < ApplicationRecord
             Transaction.all.where("item_name LIKE ? or item_description LIKE ?", "%#{query}%", "%#{query}%")
         end
     end
+
+    def self.most_expensive
+        self.order(price: :desc).first(3)
+    end
+
 end

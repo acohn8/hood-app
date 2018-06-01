@@ -1,15 +1,32 @@
 <% if @transaction.errors.any? %>
-    <ul>
-        <% @transaction.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-        <% end %>
-    </ul>
+    <% @transaction.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Oh snap!</strong> <%= message %>
+</div>
+    <% end %>
 <% end %>
 
 <%= form_for transaction do |f| %>
-    <p>Item Name: <%= f.text_field :item_name %></p>
-    <p>Item Description: <%= f.text_field :item_description %></p>
-    <p>Item Condition: <%= f.text_field :condition %></p>
-    <p>Item Price: <%= f.number_field :price %></p>
-    <%= f.submit %>
+    <form>
+      <fieldset>
+        <div class="form-group">
+          <label>Item Name</label>
+          <%= f.text_field :item_name, class: "form-control", id: "inputDefault", placeholder: "Item Name" %>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <%= f.text_field :item_description, class: "form-control", id: "inputDefault", placeholder: "Description" %>
+        </div>
+        <div class="form-group">
+          <label>Condition</label>
+          <%= f.text_field :condition, class: "form-control", id: "inputDefault", placeholder: "Condition" %>
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+          <%= f.number_field :price, class: "form-control", id: "inputDefault", placeholder: "Price" %>
+        </div>
+        <%= f.submit class: "btn btn-primary" %>
+      </fieldset>
+    </form>
 <% end %>
