@@ -1,8 +1,9 @@
 # Neighborhoods
 
-chevychase = Neighborhood.create(hood_name: 'Chevy Chase')
+chevychase = Neighborhood.create(hood_name: 'Hawthorne, Barnaby Woods, Chevy Chase')
 capitolhill = Neighborhood.create(hood_name: 'Capitol Hill, Lincoln Park')
 ivycity = Neighborhood.create(hood_name: 'Ivy City, Arboretum, Trinidad, Carver Langston')
+
 # dupont = Neighborhood.create(hood_name: 'Dupont Circle, Connecticut Avenue/K Street')
 # anacostia = Neighborhood.create(hood_name: 'Historic Anacostia')
 
@@ -59,7 +60,7 @@ darryl = User.create(
 
 elvis = User.create(
     username: 'Elvis',
-    neighborhood: anacostia,
+    neighborhood: ivycity,
     password: "alicepass",
     email: "elvis@rocketmail.com",
     tag_line: "Not dead"
@@ -67,7 +68,7 @@ elvis = User.create(
 
 frank = User.create(
     username: 'Frank',
-    neighborhood: anacostia,
+    neighborhood: ivycity,
     password: "frankpass",
     email: "frank@hotmail.com",
     tag_line: "Thinking about opening a bar"
@@ -75,7 +76,7 @@ frank = User.create(
 
 gail = User.create(
     username: 'Gail',
-    neighborhood: anacostia,
+    neighborhood: ivycity,
     password: "gailpass",
     email: "gaily@newmail.com",
     tag_line: "A great wind blows"
@@ -108,20 +109,23 @@ ceiling_fan = Transaction.create(
     user: stacy
     )
 
-bricks = T = Transaction.create(
-    item_namPallet of Bricksbike',
-    pri75 500,
-    item_descriptioQuite heavyycle',
-    conditiowetime!',
-    usalice
+bricks = Transaction.create(
+    item_name: 'Pallet of Bricks',
+    price: 75,
+    item_description: 'Quite heavy',
+    condition: 'wet',
+    user: alice
     )
- cordlesssale = Transaction.create(
-    item_namCordless phonebike',
-    pri50 500,
-    item_descripti"Doesn't have that tin can sound like some do"cle',
-    conditioNeeds new batteriesime!',
-    uscliff     )
- plants = Transaction.create(
+
+cordless = Transaction.create(
+    item_name: 'Cordless phone',
+    price: 50,
+    item_description: "Doesn't have that tin can sound like some do",
+    condition: 'Needs new batteries',
+    user: cliff
+    )
+
+plants = Transaction.create(
     item_name: 'Assorted plants',
     price: 20,
     item_description: "I'm allergic to one of them, don't know which",
@@ -136,6 +140,7 @@ rotary = Transaction.create(
     condition: 'Antique',
     user: elvis
     )
+
 surf_board = Transaction.create(
     item_name: 'Surf Board',
     price: 200,
@@ -144,83 +149,91 @@ surf_board = Transaction.create(
     user: frank
     )
 
+stroller_adapter = Transaction.create(
+    item_name: 'Stroller Adapter',
+    price: 200,
+    item_description: "Baby Jogger City Mini Double Stroller Car Seat Adapter",
+    condition: 'Used, older model',
+    user: stacy
+    )
+
 # Notices
 
 dan_notice = Notice.create(
     title: 'Starbucks Coffee',
     content: "It's too hot",
-    user: dan)
+    user: dan
+    )
 
 stacy_notice = Notice.create(
     title: 'Bird in north stairwell',
     content: "It's still there! Someone call animal control! Please!",
-    user: stacy)
+    user: stacy
+    )
 
 elivs_notice = Notice.create(
-    title: 'Starbucks Coffee',
-    content: "It's too hot",
-    user: dan
+    title: 'Hooded individual',
+    content: "I saw a suspicious person in a hoodie walking down my street. Also I will take this time to state that I don't particularly care for the name of this website.",
+    user: stacy
     )
 
-dan_gripe = Notice.create(
-    title: 'Starbucks Coffee',
-    content: "It's too hot",
-    user: dan
+need_contractor = Notice.create(
+    title: 'Seeking contractor for home renovation',
+    content: "Prefer family run businesses",
+    user: elvis
     )
 
-dan_gripe = Notice.create(
-    title: 'Starbucks Coffee',
-    content: "It's too hot",
-    user: dan
+babysitter = Notice.create(
+    title: 'Babysitter, Pet & Household Helper Available',
+    content: "My granddaughter is home from college for the summer and has a reasonable rate",
+    user: gail
     )
 
-dan_gripe = Notice.create(
-    title: 'Starbucks Coffee',
-    content: "It's too hot",
-    user: dan
+back_doctor = Notice.create(
+    title: 'I need a back doctor recommendation',
+    content: "Ouch Ouch",
+    user: frank
     )
 
+macbook = Notice.create(
+    title: "My macbook is broken. I can't send any internets",
+    content: "It's too hot",
+    user: darryl
+    )
 
-
-# dan_gripe = Notice.cre
-    ate(title: 'Starbucks Coffe
-    e', content: "It's too ho
-    t", user:
-     d
 # Comments
-a
 
-# bob_comment = Comment.cre
-    ate(content: "Starbucks is horrible
-    .", user: b
-    ob, commentable_type: "Notic
-    e", commentable: dan_g
-    ripdan_comment = Comment.create(
-    content: "I would like your bike.",
-    user: dan,
-    commentable_type: 'Transaction',
-    commentable: bike_sale
+bob_comment = Comment.create(
+    content: "Starbucks is horrible.",
+    user: bob,
+    commentable_type: "Notice",
+    commentable: dan_notice
     )
 
 dan_comment = Comment.create(
     content: "I would like your bike.",
     user: dan,
     commentable_type: 'Transaction',
-    commentable: bike_sale
+    commentable: bike
     )
 
-dan_comment = Comment.create(
-    content: "I would like your bike.",
-    user: dan,
+stacy_comment = Comment.create(
+    content: "What medication is it?",
+    user: stacy,
     commentable_type: 'Transaction',
-    commentable: bike_sale
+    commentable: pills
     )
 
+elvis_comment = Comment.create(
+    content: "I went surfing once.",
+    user: elvis,
+    commentable_type: 'Transaction',
+    commentable: surf_board
+    )
 
-
-# dan_comment = Comment.cre
-    ate(content: "I would like your bike
-    .", user: d
-    an, commentable_ty'e: "Transac'i
-    n", commentable: bike_
-    sale)
+cliff_comment = Comment.create(
+    content: "Did you try turning it off and on again",
+    user: cliff,
+    commentable_type: 'Notice',
+    commentable: macbook
+    )

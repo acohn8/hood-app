@@ -1,5 +1,4 @@
 <h1><%= @transaction.item_name %></h1>
-<%= link_to "Back to Marketplace", transactions_path %><br><br>
 
 Price: <%= @transaction.free? ? "FREE" : number_to_currency(@transaction.price) %><br/>
 Condition: <%= @transaction.condition %><br/>
